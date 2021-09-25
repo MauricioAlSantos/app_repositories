@@ -2,7 +2,7 @@ package br.com.dio.app.repositories.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Repo(
+data class Repo (
     val id: Long,
     val name: String,
     val owner: Owner,

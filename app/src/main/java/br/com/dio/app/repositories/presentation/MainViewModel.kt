@@ -11,32 +11,24 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
-class MainViewModel(
-    private val listUserRepositoriesUseCase: ListUserRepositoriesUseCase
-) : ViewModel() {
-
-    private val _repos = MutableLiveData<State>()
+class MainViewModel(private  val listUserRepositoriesUseCase:ListUserRepositoriesUseCase): ViewModel() {
+    private val  _repos = MutableLiveData<State>()
     val repos: LiveData<State> = _repos
-
-    fun getRepoList(user: String) {
+    fun getRepoList(user:String){
         viewModelScope.launch {
             listUserRepositoriesUseCase(user)
-                .onStart {
-                    _repos.postValue(State.Loading)
-                }
-                .catch {
-                    _repos.postValue(State.Error(it))
-                }
+                .onStart {  }
+                .catch { _repos.postValue(State.Error(it)) }
                 .collect {
-                    _repos.postValue(State.Success(it))
+
+                    _repos.postValue(State.Sucess(it))
                 }
+
         }
     }
-
-    sealed class State {
-        object Loading : State()
-        data class Success(val list: List<Repo>) : State()
-        data class Error(val error: Throwable) : State()
+    sealed class State{
+        object Loading:State()
+        data class Sucess(val list: List<Repo>):State()
+        data class Error(val error: Throwable):State()
     }
-
 }

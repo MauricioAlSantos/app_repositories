@@ -1,6 +1,7 @@
 package br.com.dio.app.repositories
 
 import android.app.Application
+import android.app.Presentation
 import br.com.dio.app.repositories.data.di.DataModule
 import br.com.dio.app.repositories.domain.di.DomainModule
 import br.com.dio.app.repositories.presentation.di.PresentationModule
@@ -15,7 +16,6 @@ class App : Application() {
         startKoin {
             androidContext(this@App)
         }
-
         DataModule.load()
         DomainModule.load()
         PresentationModule.load()
