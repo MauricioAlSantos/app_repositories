@@ -10,7 +10,8 @@
       "stargazers_count": 0,
       "language": "Java",
       "html_url": "https://github.com/EzequielMessore/android-DocumentCentricApps",
-      "description": "description"
+      "description": "description",
+      "updated_at": "2021-09-14T21:18:13Z"
     },
     {
       "id": 178429138,
@@ -22,7 +23,8 @@
       "html_url": "https://github.com/EzequielMessore/android-guidelines",
       "description": "Architecture and code guidelines we use at ribot when developing for Android",
       "stargazers_count": 0,
-      "language": "guideline"
+      "language": "guideline",
+      "updated_at": "2021-09-14T21:18:13Z"
     },
     {
       "id": 183915325,
@@ -34,7 +36,8 @@
       "html_url": "https://github.com/EzequielMessore/android-testing",
       "description": "A collection of samples demonstrating different frameworks and techniques for automated testing",
       "stargazers_count": 1,
-      "language": "Java"
+      "language": "Java",
+      "updated_at": "2021-09-14T21:18:13Z"
     },
     {
       "id": 378749135,

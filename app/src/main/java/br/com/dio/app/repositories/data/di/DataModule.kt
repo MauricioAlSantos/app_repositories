@@ -2,6 +2,8 @@ package br.com.dio.app.repositories.data.di
 
 import br.com.dio.app.repositories.data.repositories.RepoRepository
 import br.com.dio.app.repositories.data.repositories.RepoRepositoryImpl
+import br.com.dio.app.repositories.data.repositories.UserRepository
+import br.com.dio.app.repositories.data.repositories.UserRepositoryImpl
 import br.com.dio.app.repositories.data.services.GitHubService
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -20,7 +22,7 @@ object DataModule {
     private fun networkModules(): Module {
         return module {
             val interceptor=HttpLoggingInterceptor{
-                //println(it)
+               // println(it)
         }
             interceptor.level = HttpLoggingInterceptor.Level.BODY
             single {
@@ -38,6 +40,9 @@ object DataModule {
         return module {
             single<RepoRepository> {
                 RepoRepositoryImpl(get())
+            }
+            single<UserRepository>{
+                UserRepositoryImpl(get())
             }
         }
     }

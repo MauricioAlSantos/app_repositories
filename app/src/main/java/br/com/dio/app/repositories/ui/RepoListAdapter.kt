@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.dio.app.repositories.data.model.Repo
 import br.com.dio.app.repositories.databinding.ItemRepoBinding
 import com.bumptech.glide.Glide
+import java.text.SimpleDateFormat
 
 
 class RepoListAdapter: ListAdapter<Repo, RepoListAdapter.ViewHolder>(DiffCallBack()) {
@@ -23,19 +24,23 @@ class RepoListAdapter: ListAdapter<Repo, RepoListAdapter.ViewHolder>(DiffCallBac
     }
     inner  class ViewHolder(private val binding: ItemRepoBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(item: Repo){
+            val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+            val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm")
+            val updatedDate = formatter.format(parser.parse(item.updatedAt))
+
+
             binding.tvRepoName.text = item.name
             binding.tvRepoDescription.text = item.description
             binding.chipStar.text = item.stargazersCount.toString()
             binding.tvRepoLanguage.text = item.language
-            println(item.owner.avatarURL)
+            binding.tvRepoUpdatedDate.text = updatedDate
             Glide.with(binding.root.context).load(item.owner.avatarURL).into(binding.ivOwner)
         }
     }
+    class DiffCallBack:DiffUtil.ItemCallback<Repo>(){
+        override fun areItemsTheSame(oldItem: Repo, newItem: Repo)=oldItem==newItem
 
-}
-class DiffCallBack:DiffUtil.ItemCallback<Repo>(){
-    override fun areItemsTheSame(oldItem: Repo, newItem: Repo)=oldItem==newItem
+        override fun areContentsTheSame(oldItem: Repo, newItem: Repo)=oldItem.id==newItem.id
 
-    override fun areContentsTheSame(oldItem: Repo, newItem: Repo)=oldItem.id==newItem.id
-
+    }
 }
